@@ -32,8 +32,8 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     strategy:
       matrix:
-        VERSION: [21.02, 23.05]
-        SET: [docker, non-docker]
+        VERSION: [23.05]
+        SET: [non-docker]
 
     steps:
     - name: Checkout
@@ -80,6 +80,7 @@ jobs:
         cd project
         source ../scripts/add_packages.sh
         source ../scripts/custome_config.sh
+        source ../scripts/wifi/add_rtl8852be.sh
 
     - name: Prepare dot config and feeds
       run: |
@@ -142,9 +143,9 @@ jobs:
 
     strategy:
       matrix:
-        VERSION: [21.02, 23.05]
-        CPU: [rk3328, rk3399, rk3566, rk3568, rk3588]
-        SET: [docker, non-docker]
+        VERSION: [23.05]
+        CPU: [rk3399]
+        SET: [non-docker]
     steps:
     - name: Checkout
       uses: actions/checkout@main
