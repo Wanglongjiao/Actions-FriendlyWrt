@@ -1,9 +1,7 @@
 #!/bin/bash
 set -eu
 top_path=$(pwd)
-pushd kernel
-kernel_ver=`make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 kernelrelease`
-popd
+kernel_ver=`make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 6.1.63`
 modules_dir=$(readlink -f ./out/output_*_kmodules/lib/modules/${kernel_ver})
 [ -d ${modules_dir} ] || {
 	echo "please build kernel first."
